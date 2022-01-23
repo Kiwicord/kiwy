@@ -61,7 +61,6 @@ praw==7.4.0
 prawcore==2.3.0
 priority==2.0.0
 protobuf==3.19.3
-py-cord==2.0.0a4448+ge00b272d
 PyAutoGUI==0.9.52
 pycparser==2.20
 pyee==8.2.2
