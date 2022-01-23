@@ -48,7 +48,7 @@ class Bot(BotBase):
 
     async def on_message(self, message):
         if message.channel.id == 934860620745015296:
-            if message.content is not '<:kiwi_beten:934860398304329778>':
+            if message.content !=  '<:kiwi_beten:934860398304329778>':
                 await message.delete()
 
 bot = Bot()
