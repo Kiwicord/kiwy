@@ -1,10 +1,6 @@
 from discord.ext.commands import Bot as BotBase
 from discord import Intents, Embed
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from os import getenv
-from dotenv import load_dotenv
-
-load_dotenv()
 
 PREFIX='.'
 OWNER_IDS = [733403498766401554]
@@ -24,7 +20,7 @@ class Bot(BotBase):
     
     def run(self, version):
         self.VERSION = version
-        self.TOKEN = getenv('TOKEN')
+        self.TOKEN = 'NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8'
         print('Bot is starting up...')
         super().run(self.TOKEN, reconnect=True)
 
