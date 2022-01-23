@@ -34,17 +34,19 @@ class Bot(BotBase):
     async def on_disconnect(self):
         print('Bot disconnected')
     
+    async def on_error(self, err, *args, **kwargs):
+        if err == 'on_command_error':
+            await args[0].send('Irgendwas ist schief gelaufen')
+        raise 
+
+    async def on_command_error(self, ctx, exc):
+        pass
+
     async def on_ready(self):
         if not self.ready:
             self.ready = True
             self.guild = self.get_guild(891005230173544509)
             print('Bot is ready')
-
-            channel = self.get_channel(891005230668460074)
-            await channel.send('Online')
-
-            embed = Embed(title='Jetzt Online', description='Der Kiwi-Bot ist nun online')
-            await channel.send(embed=embed)
         else:
             print('Bot reconnected')
 
