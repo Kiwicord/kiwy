@@ -1,5 +1,5 @@
 from discord.ext.commands import Bot as BotBase
-from discord import Intents
+from discord import Intents, Embed
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from os import getenv
 from dotenv import load_dotenv
@@ -39,6 +39,12 @@ class Bot(BotBase):
             self.ready = True
             self.guild = self.get_guild(891005230173544509)
             print('Bot is ready')
+
+            channel = self.get_channel(891005230668460074)
+            await channel.send('Online')
+
+            embed = Embed(title='Jetzt Online', description='Der Kiwi-Bot ist nun online')
+            await channel.send(embed=embed)
         else:
             print('Bot reconnected')
 
