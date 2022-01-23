@@ -1,4 +1,5 @@
 from discord.ext.commands import Bot as BotBase
+from discord import Intents
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from os import getenv
 from dotenv import load_dotenv
@@ -15,7 +16,11 @@ class Bot(BotBase):
         self.GUILD = None
         self.scheduler = AsyncIOScheduler()
 
-        super().__init__(command_prefix=PREFIX, owner_ids=OWNER_IDS)
+        super().__init__(
+            command_prefix=PREFIX, 
+            owner_ids=OWNER_IDS,
+            intents=Intents.all(),
+        )
     
     def run(self, version):
         self.VERSION = version
