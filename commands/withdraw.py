@@ -1,0 +1,36 @@
+import discord
+from discord.ext import commands
+from db import *
+
+class Withdraw(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+        self.err = ''
+
+    @commands.command(aliases=['with'])
+    async def withdraw(self, ctx, amount=None):
+        bank_amt = await get_bank(ctx.author.id)
+        err_embed = discord.Embed(color=0x77dd77, title='')
+        if amount is None:
+            err_embed.title = '<a:kc_bewegendeszeichenlmao:934397592178135121> Bitte gib den Betrag an!'
+            await ctx.send(embed=err_embed)
+
+        if amount == 'all':
+            amount = int(bank_amt)
+            if bank_amt < 0:
+                embed_not_enough_money = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du hast nicht genügend Geld!')
+                await ctx.send(embed=embed_not_enough_money)
+                return
+
+        if bank_amt < int(amount):
+            embed_not_enough_money = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du hast nicht genügend Geld!')
+            await ctx.send(embed=embed_not_enough_money)
+            return
+        
+        embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Abgehoben!', description=f'Du hast erfolgreich **{int(amount):,}**🥝 von deiner Bank abgehoben!')
+        await open_profile(ctx.author.id)
+        await withdraw_amt(ctx.author.id, amount=int(amount))
+        await ctx.send(embed=embed)
+
+def setup(client):
+    client.add_cog(Withdraw(client))

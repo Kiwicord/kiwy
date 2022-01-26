@@ -37,3 +37,7 @@ async def update_bank(_id, amount):
 async def deposit_amt(_id, amount):
     await update_wallet(_id, -1*amount)
     await update_bank(_id, amount)
+
+async def withdraw_amt(_id, amount):
+    await update_bank(_id, -1*amount)
+    await update_wallet(_id, amount)

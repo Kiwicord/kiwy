@@ -6,6 +6,7 @@ from db import *
 
 from commands.balance import Balance
 from commands.deposit import Deposit
+from commands.withdraw import Withdraw
 
 PREFIX = '.'
 
@@ -25,6 +26,7 @@ async def setup():
     await client.wait_until_ready()
     client.add_cog(Balance(client))
     client.add_cog(Deposit(client))
+    client.add_cog(Withdraw(client))
 
 client.loop.create_task(setup())
 
