@@ -10,7 +10,6 @@ class Balance(commands.Cog):
     async def balance(self, ctx, member: discord.User=None):
         if member is None:
             member = ctx.author
-            await open_profile(ctx.author.id)
             wallet = await get_wallet(ctx.author.id)
             bank = await get_bank(ctx.author.id)
         elif member is not None:
