@@ -7,6 +7,10 @@ from db import *
 from commands.balance import Balance
 from commands.deposit import Deposit
 from commands.withdraw import Withdraw
+from commands.work import Work
+from commands.changelog import Changelog
+
+from error import CommandErrorHandler
 
 PREFIX = '.'
 
@@ -27,7 +31,10 @@ async def setup():
     client.add_cog(Balance(client))
     client.add_cog(Deposit(client))
     client.add_cog(Withdraw(client))
+    client.add_cog(Work(client))
+    client.add_cog(CommandErrorHandler(client))
+    client.add_cog(Changelog(client))
 
 client.loop.create_task(setup())
 
-client.run(getenv('TOKEN'))
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
