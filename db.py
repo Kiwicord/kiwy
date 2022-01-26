@@ -19,25 +19,31 @@ async def open_profile(_id):
         )
 
 async def get_wallet(_id):
+    await open_profile(_id)
     user = bank.find_one({'_id': _id})
     return user['wallet']
 
 async def get_bank(_id):
+    await open_profile(_id)
     user = bank.find_one({'_id': _id})
     return user['bank']
 
 async def update_wallet(_id, amount):
+    await open_profile(_id)
     wallet_amt = await get_wallet(_id)
     bank.update_one({'_id': _id,}, {'$set': {'wallet': wallet_amt+int(amount)}})
 
 async def update_bank(_id, amount):
+    await open_profile(_id)
     bank_amt = await get_bank(_id)
     bank.update_one({'_id': _id,}, {'$set': {'bank': bank_amt+int(amount)}})
 
 async def deposit_amt(_id, amount):
+    await open_profile(_id)
     await update_wallet(_id, -1*amount)
     await update_bank(_id, amount)
 
 async def withdraw_amt(_id, amount):
+    await open_profile(_id)
     await update_bank(_id, -1*amount)
     await update_wallet(_id, amount)
