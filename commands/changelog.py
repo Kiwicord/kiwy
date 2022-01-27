@@ -21,6 +21,7 @@ class Changelog(commands.Cog):
                 .work - Verdiene Geld! (60 Sekunden Cooldown)
                 """
             )
+            embed.set_image(url='https://cdn.discordapp.com/attachments/891724253517479946/924053372691157112/kc_news.png')
             await ctx.send(embed=embed)
         else:
             return
