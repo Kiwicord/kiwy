@@ -9,10 +9,14 @@ from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
+from commands.leaderboard import Leaderboard
+# from commands.ban import Ban
 
 from error import CommandErrorHandler
 
-PREFIX = '.'
+from listeners.kiwi_church import KiwiChurch
+
+PREFIX = '-'
 
 load_dotenv()
 
@@ -34,7 +38,10 @@ async def setup():
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
+    client.add_cog(Leaderboard(client))
+    # client.add_cog(Ban(client))
+    client.add_cog(KiwiChurch(client))
 
 client.loop.create_task(setup())
 
-client.run('ODUwODI5MDU5MjEwNzM5NzYz.YLvaTw.1eTl7oP9Mdu_hG7k6Kj9PNSYjAQ')
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
