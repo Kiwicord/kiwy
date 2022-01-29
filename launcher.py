@@ -9,7 +9,7 @@ from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
-from commands.leaderboard import Leaderboard
+# from commands.leaderboard import Leaderboard
 # from commands.ban import Ban
 
 from error import CommandErrorHandler
@@ -38,7 +38,7 @@ async def setup():
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
-    client.add_cog(Leaderboard(client))
+    # client.add_cog(Leaderboard(client))
     # client.add_cog(Ban(client))
     client.add_cog(KiwiChurch(client))
 
