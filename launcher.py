@@ -16,7 +16,7 @@ from error import CommandErrorHandler
 
 from listeners.kiwi_church import KiwiChurch
 
-PREFIX = '-'
+PREFIX = '.'
 
 load_dotenv()
 
