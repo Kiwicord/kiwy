@@ -11,7 +11,7 @@ class Work(commands.Cog):
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def work(self, ctx):
         income = random.randint(10, 500)
-        embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gearbeitet!', description=f'Du hast für **{int(income):,}**🥝 gearbeitet!')
+        embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gute Arbeit!', description=f'Du hast für **{int(income):,}**🥝 gearbeitet!')
         await update_wallet(ctx.author.id, income)
         await ctx.send(embed=embed)
 
