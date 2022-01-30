@@ -13,6 +13,8 @@ class Send(commands.Cog):
         err_embed = discord.Embed(color=0x77dd77, title='')
         if member == ctx.author:
             e_embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du kannst dir selber kein Geld senden!')
+            await ctx.send(embed=e_embed)
+            return
         if amount is None:
             err_embed.title = '<a:kc_bewegendeszeichenlmao:934397592178135121> Bitte gib den Betrag an!'
             await ctx.send(embed=err_embed)
