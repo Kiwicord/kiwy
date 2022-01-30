@@ -10,13 +10,15 @@ from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
 from commands.leaderboard import Leaderboard
+from commands.shop import Shop
+from commands.send import Send
 # from commands.ban import Ban
 
 from error import CommandErrorHandler
 
 from listeners.kiwi_church import KiwiChurch
 
-PREFIX = '-'
+PREFIX = '.'
 
 load_dotenv()
 
@@ -41,7 +43,9 @@ async def setup():
     client.add_cog(Leaderboard(client))
     # client.add_cog(Ban(client))
     client.add_cog(KiwiChurch(client))
+    # client.add_cog(Shop(client))
+    client.add_cog(Send(client))
 
 client.loop.create_task(setup())
 
-client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')   
