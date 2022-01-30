@@ -24,6 +24,7 @@ class Send(commands.Cog):
         await open_profile(ctx.author.id)
         await open_profile(member.id)
         await update_wallet(member.id, amount=int(amount))
+        await update_wallet(ctx.author.id, amount=int(-1*amount))
         await ctx.send(embed=embed)
 
 def setup(client):
