@@ -8,7 +8,7 @@ class Send(commands.Cog):
         self.err = ''
 
     @commands.command()
-    async def send(self, ctx, member : discord.Member, amount=None):
+    async def send(self, ctx, member : discord.Member, amount : int=None):
         wallet_amt = await get_wallet(ctx.author.id)
         err_embed = discord.Embed(color=0x77dd77, title='')
         if amount is None:
@@ -23,8 +23,8 @@ class Send(commands.Cog):
         embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Geld gesendet!', description=f'Du hast erfolgreich **{int(amount):,}**🥝 an {member.mention} gesendet!')
         await open_profile(ctx.author.id)
         await open_profile(member.id)
-        await update_wallet(member.id, amount=int(amount))
-        await update_wallet(ctx.author.id, amount=int(-1*amount))
+        await update_wallet(member.id, amount=amount)
+        await update_wallet(ctx.author.id, amount=-1*amount)
         await ctx.send(embed=embed)
 
 def setup(client):
