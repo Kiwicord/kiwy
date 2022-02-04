@@ -12,7 +12,7 @@ from commands.changelog import Changelog
 # from commands.leaderboard import Leaderboard
 # from commands.ban import Ban
 from commands.send import Send
-# from commands.daily import Daily
+from commands.daily import Daily
 
 from error import CommandErrorHandler
 
@@ -45,7 +45,7 @@ async def setup():
     client.add_cog(KiwiChurch(client))
     # client.add_cog(Shop(client))
     client.add_cog(Send(client))
-    # client.add_cog(Daily(client))
+    client.add_cog(Daily(client))
 
 client.loop.create_task(setup())
 
