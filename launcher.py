@@ -9,7 +9,6 @@ from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
-from commands.leaderboard import Leaderboard
 # from commands.ban import Ban
 from commands.send import Send
 from commands.daily import Daily
