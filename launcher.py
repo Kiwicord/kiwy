@@ -39,7 +39,6 @@ async def setup():
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
-    client.add_cog(Leaderboard(client))
     # client.add_cog(Ban(client))
     client.add_cog(KiwiChurch(client))
     # client.add_cog(Shop(client))
