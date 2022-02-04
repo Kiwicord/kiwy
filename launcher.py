@@ -9,7 +9,7 @@ from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
-# from commands.leaderboard import Leaderboard
+from commands.leaderboard import Leaderboard
 # from commands.ban import Ban
 from commands.send import Send
 from commands.daily import Daily
@@ -40,13 +40,13 @@ async def setup():
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
-    # client.add_cog(Leaderboard(client))
+    client.add_cog(Leaderboard(client))
     # client.add_cog(Ban(client))
     client.add_cog(KiwiChurch(client))
     # client.add_cog(Shop(client))
     client.add_cog(Send(client))
-    # client.add_cog(Daily(client))
+    client.add_cog(Daily(client))
 
 client.loop.create_task(setup())
 
-client.run('ONzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
