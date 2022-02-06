@@ -10,6 +10,7 @@ class Work(commands.Cog):
     @commands.cooldown(1, 3600, commands.BucketType.user)
     @commands.group(invoke_without_command=True)
     async def work(self, ctx, option=None):
+        await open_profile(ctx.author.id)
         jobs = await get_jobs()
         current_job = bank.find_one({'_id': ctx.author.id})
         job = current_job['job']
@@ -59,6 +60,7 @@ class Work(commands.Cog):
     
     @work.command(name='list')
     async def list(self, ctx):
+        await open_profile(ctx.author.id)
         embed = discord.Embed(title='<a:kc_bewegendeszeichenlmao:934397592178135121> Jobs', color=0x77dd77)
         jobs = await get_jobs()
         for job in jobs:
@@ -68,6 +70,7 @@ class Work(commands.Cog):
 
     @work.command()
     async def resign(self, ctx):
+        await open_profile(ctx.author.id)
         current_job = await get_current_job(ctx.author.id)
         job = current_job['job']
         if job == 'unemployed':
