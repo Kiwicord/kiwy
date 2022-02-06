@@ -12,6 +12,7 @@ from commands.changelog import Changelog
 # from commands.ban import Ban
 from commands.send import Send
 from commands.daily import Daily
+from commands.beg import Beg
 
 from error import CommandErrorHandler
 
@@ -35,7 +36,7 @@ async def setup():
     await client.wait_until_ready()
     client.add_cog(Balance(client))
     client.add_cog(Deposit(client))
-    client.add_cog(Withdraw(client))
+    client.add_cog(Withdraw(client))    
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
@@ -44,6 +45,7 @@ async def setup():
     # client.add_cog(Shop(client))
     client.add_cog(Send(client))
     client.add_cog(Daily(client))
+    client.add_cog(Beg(client))
 
 client.loop.create_task(setup())
 
