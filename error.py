@@ -42,6 +42,8 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.CommandError):
             if isinstance(error, commands.CommandOnCooldown):
                 return
+            if isinstance(error, commands.CommandNotFound):
+                return
             embed = discord.Embed(title="Fehler!", color=0x77dd77, description=f"```{error}```")
             embed.set_footer(text="Um den Fehler zu reporten, wende dich bitte an das Serverteam.")
 
