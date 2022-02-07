@@ -46,7 +46,7 @@ class CommandErrorHandler(commands.Cog):
                 return
             embed = discord.Embed(title="Fehler!", color=0x77dd77, description=f"```{error}```")
             embed.set_footer(text="Um den Fehler zu reporten, wende dich bitte an das Serverteam.")
-
+            ctx.command.reset_cooldown(ctx)
             await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
