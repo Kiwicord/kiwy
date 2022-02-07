@@ -34,6 +34,10 @@ class CommandErrorHandler(commands.Cog):
             embed3 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Cooldown aktiv!', description=msg3)
             await ctx.send(embed=embed3)
             return
+        
+        if isinstance(error, commands.CommandNotFound):
+            embedlol = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Dieser Befehl wurde nicht gefunden!')
+            await ctx.reply(embed=embedlol)
 
         if isinstance(error, commands.CommandError):
             if isinstance(error, commands.CommandOnCooldown):
