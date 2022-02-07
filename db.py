@@ -20,9 +20,7 @@ async def open_profile(_id):
                 '_id': _id,
                 'wallet': 0,
                 'bank': 0,
-                'items': {
-
-                }
+                'job': 'unemployed'
             }
         )
 
