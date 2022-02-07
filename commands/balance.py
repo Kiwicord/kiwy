@@ -24,7 +24,7 @@ class Balance(commands.Cog):
         embed.add_field(name='Geld', value=f'**{wallet:,}**🥝')
         embed.add_field(name='Bank', value=f'**{bank:,}**🥝')
 
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
     client.add_cog(Balance(client))

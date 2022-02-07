@@ -20,16 +20,16 @@ class Beg(commands.Cog):
         CHANCE = random.choice(PROB)
         if CHANCE == 'yes':
             await update_wallet(ctx.author.id, income)
-            await ctx.send(embed=embed)
+            await ctx.reply(embed=embed, mention_author=False)
             return
 
         if CHANCE == 'no':
             if wallet < income:
                 embed_no_money = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Ignoriert!', description=f'Du wurdest beim Geld erbitten ignoriert. Du bekommst kein Geld. Geh arbeiten du fauler Sack!')
-                await ctx.send(embed=embed_no_money)
+                await ctx.reply(embed=embed_no_money, mention_author=False)
                 return
             await update_wallet(ctx.author.id, -1*int(income))
-            await ctx.send(embed=embed_fail)
+            await ctx.reply(embed=embed_fail, mention_author=False)
             return
 
 def setup(client):

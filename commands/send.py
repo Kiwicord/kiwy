@@ -13,15 +13,15 @@ class Send(commands.Cog):
         err_embed = discord.Embed(color=0x77dd77, title='')
         if member == ctx.author:
             e_embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du kannst dir selber kein Geld senden!')
-            await ctx.send(embed=e_embed)
+            await ctx.reply(embed=e_embed, mention_author=False)
             return
         if amount is None:
             err_embed.title = '<a:kc_bewegendeszeichenlmao:934397592178135121> Bitte gib den Betrag an!'
-            await ctx.send(embed=err_embed)
+            await ctx.reply(embed=err_embed, mention_author=False)
 
         if wallet_amt < int(amount):
             embed_not_enough_money = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du hast nicht genügend Geld!')
-            await ctx.send(embed=embed_not_enough_money)
+            await ctx.reply(embed=embed_not_enough_money, mention_author=False)
             return
         
         embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Geld gesendet!', description=f'Du hast erfolgreich **{int(amount):,}**🥝 an {member.mention} gesendet!')
@@ -29,7 +29,7 @@ class Send(commands.Cog):
         await open_profile(member.id)
         await update_wallet(member.id, amount=amount)
         await update_wallet(ctx.author.id, amount=-1*amount)
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
     client.add_cog(Send(client))

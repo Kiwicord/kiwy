@@ -13,24 +13,24 @@ class Deposit(commands.Cog):
         err_embed = discord.Embed(color=0x77dd77, title='')
         if amount is None:
             err_embed.title = '<a:kc_bewegendeszeichenlmao:934397592178135121> Bitte gib den Betrag an!'
-            await ctx.send(embed=err_embed)
+            await ctx.reply(embed=err_embed, mention_author=False)
 
         if amount == 'all':
             amount = int(wallet_amt)
             if wallet_amt <= 0:
                 embed_not_enough_money = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du hast nicht genügend Geld!')
-                await ctx.send(embed=embed_not_enough_money)
+                await ctx.reply(embed=embed_not_enough_money, mention_author=False)
                 return
 
         if wallet_amt < int(amount):
             embed_not_enough_money = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Du hast nicht genügend Geld!')
-            await ctx.send(embed=embed_not_enough_money)
+            await ctx.reply(embed=embed_not_enough_money, mention_author=False)
             return
         
         embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Überwiesen!', description=f'Du hast erfolgreich **{int(amount):,}**🥝 auf deine Bank überwiesen!')
         await open_profile(ctx.author.id)
         await deposit_amt(ctx.author.id, amount=int(amount))
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
     client.add_cog(Deposit(client))
