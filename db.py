@@ -7,7 +7,7 @@ db = cluster['Cluster0']
 bank = db['kiwy-economy']
 shop = db['kiwy-economy-shop']
 inventory = db['kiwy-economy-inv']
-work = db['kiwy-work-table']
+work_db = db['kiwy-work-table']
 
 # main economy
 # --------------------------------------------------------
@@ -59,7 +59,7 @@ async def get_current_job(_id):
 # --------------------------------------------------------
 
 async def get_jobs():
-    return work.find()
+    return work_db.find()
 
 async def get_job(job_id):
-    return work.find_one({'_id': job_id})
+    return work_db.find_one({'_id': job_id})

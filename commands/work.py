@@ -9,7 +9,7 @@ class Work(commands.Cog):
 
     @commands.cooldown(1, 3600, commands.BucketType.user)
     @commands.group(name='work', invoke_without_command=True)
-    async def work_cmd(self, ctx, option=None):
+    async def work(self, ctx, option=None):
         await open_profile(ctx.author.id)
         jobs = await get_jobs()
         current_job = bank.find_one({'_id': ctx.author.id})
@@ -24,7 +24,7 @@ class Work(commands.Cog):
             if current_job['job'] == 'unemployed':
                 embed_unemployed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Arbeitslos!', description='Du bist momentan arbeitslos. Finde einen Job mit **.work list**.')
                 await ctx.send(embed=embed_unemployed)
-                work.reset_cooldown(ctx)
+                ctx.work.reset_cooldown(ctx)
                 return
             
             user = bank.find_one({'_id': ctx.author.id})
@@ -55,7 +55,7 @@ class Work(commands.Cog):
                 embed_not_found = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Dieser Beruf wurde nicht gefunden!')
                 embed_not_found.set_footer('Tipp: benutze .work list um einen Job zu finden.')
                 await ctx.send(embed=embed_not_found)
-                work.reset_cooldown(ctx)
+                ctx.work.reset_cooldown(ctx)
                 return
         # except:
         #     pass
