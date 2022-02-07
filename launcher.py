@@ -13,6 +13,7 @@ from commands.changelog import Changelog
 from commands.send import Send
 from commands.daily import Daily
 from commands.beg import Beg
+from commands.leaderboard import Leaderboard
 
 from error import CommandErrorHandler
 
@@ -46,6 +47,7 @@ async def setup():
     client.add_cog(Send(client))
     client.add_cog(Daily(client))
     client.add_cog(Beg(client))
+    client.add_cog(Leaderboard(client))
 
 client.loop.create_task(setup())
 
