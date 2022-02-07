@@ -8,8 +8,8 @@ class Work(commands.Cog):
         self.client = client
 
     @commands.cooldown(1, 3600, commands.BucketType.user)
-    @commands.group(invoke_without_command=True)
-    async def work(self, ctx, option=None):
+    @commands.group(name='work', invoke_without_command=True)
+    async def work_cmd(self, ctx, option=None):
         await open_profile(ctx.author.id)
         jobs = await get_jobs()
         current_job = bank.find_one({'_id': ctx.author.id})
