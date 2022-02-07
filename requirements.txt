@@ -104,6 +104,4 @@ websocket-client==1.2.1
 websockets==9.1
 Werkzeug==2.0.1
 wsproto==1.0.0
-yarl==1.6.3
 youtube-dl==2021.6.6
-zipp==3.6.0
