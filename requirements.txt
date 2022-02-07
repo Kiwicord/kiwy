@@ -21,7 +21,6 @@ aiofiles==0.7.0
  cryptography==3.4.7
  cssselect==1.1.0
  discord==1.0.1
- discord-buttons==0.5
  discord-ext-ipc==2.1.1
  distlib==0.3.3
  Django==3.2.9
