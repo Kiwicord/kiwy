@@ -12,8 +12,8 @@ class Leaderboard(commands.Cog):
         data = bank.find().sort('wallet' , -1)
         embed = discord.Embed(title='Leaderboard', description='Top 10 reichsten Spieler', color=0x77dd77)
 
-        for index, value in enumerate(data, 1):
-            embed.add_field(name=f'{index}.', value=f'<@{str(value['_id'])}>: {str(value['wallet'])}', inline=False)
+        for i, x in enumerate(data, 1):
+            embed.add_field(name=f'{i}.', value=f"<@{str(x['_id'])}>: {str(x['wallet'])}", inline=False)
 
         await ctx.send(embed=embed)
 
