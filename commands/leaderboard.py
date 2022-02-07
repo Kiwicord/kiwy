@@ -10,11 +10,11 @@ class Leaderboard(commands.Cog):
     @commands.command()
     async def leaderboard(self, ctx):
         data = bank.find().sort('wallet' , -1)
-        embed = discord.Embed(title='Leaderboard', description='Top 10 reichsten Spieler', color=0x77dd77)
+        embed = discord.Embed(title='Leaderboard', description='Top 5 der reichsten User', color=0x77dd77)
 
         for i, x in enumerate(data, 1):
             embed.add_field(name=f'{i}.', value=f"<@{str(x['_id'])}>: {str(x['wallet'])}", inline=False)
-            if i == 11:
+            if i == 4:
                 await ctx.send(embed=embed)
                 return
 
