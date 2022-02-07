@@ -15,9 +15,10 @@ class Leaderboard(commands.Cog):
         for i, x in enumerate(data, 1):
             embed.add_field(name=f'{i}.', value=f"<@{str(x['_id'])}>: {str(x['wallet'])}", inline=False)
             if i == 11:
+                await ctx.send(embed=embed)
                 return
 
-        await ctx.send(embed=embed)
+    
 
 def setup(client):
     client.add_cog(Leaderboard(client))
