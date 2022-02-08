@@ -15,7 +15,7 @@ class Leaderboard(commands.Cog):
         for i, x in enumerate(data, 1):
             embed.add_field(name=f'{i}.', value=f"<@{str(x['_id'])}>: **{int(x['wallet']):,}**🥝", inline=False)
             if i == 5:
-                await ctx.send(embed=embed)
+                await ctx.reply(embed=embed, mention_author=False)
                 return
 
     
