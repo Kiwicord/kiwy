@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-class Ban(commands.Cog):
+class Kick(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -14,4 +14,4 @@ class Ban(commands.Cog):
         await ctx.send(embed=embed1)
 
 def setup(client):
-    client.add_cog(Ban(client))
+    client.add_cog(Kick(client))
