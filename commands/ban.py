@@ -11,7 +11,7 @@ class Ban(commands.Cog):
         embed2 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gebannt!', description=f'Du wurdest von **{ctx.guild.name}** gebannt.\n<:kc_punkt:924409447147786261> **{reason}**')
         await member.send(embed=embed2)
         await member.ban(reason=reason)
-        await ctx.send(embed=embed1)
+        await ctx.reply(embed=embed1, mention_author=False)
 
 def setup(client):
     client.add_cog(Ban(client))
