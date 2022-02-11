@@ -15,6 +15,7 @@ from commands.leaderboard import Leaderboard
 from commands.rob import Rob
 from commands.slots import Slots
 from commands.userinfo import Userinfo
+from commands.kick import Kick
 
 from error import CommandErrorHandler
 
@@ -50,6 +51,7 @@ async def setup():
     client.add_cog(Rob(client))
     client.add_cog(Slots(client))
     client.add_cog(Userinfo(client))
+    client.add_cog(Kick(client))
 
 client.loop.create_task(setup())
 
