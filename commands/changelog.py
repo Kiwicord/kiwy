@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from db import *
+import asyncio
 
 class Changelog(commands.Cog):
     def __init__(self, client):
