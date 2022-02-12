@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-from os import getenv
-from dotenv import load_dotenv
 from db import *
 
 from commands.balance import Balance
@@ -9,7 +7,7 @@ from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
 from commands.changelog import Changelog
-# from commands.ban import Ban
+from commands.ban import Ban
 from commands.send import Send
 from commands.daily import Daily
 from commands.beg import Beg
@@ -22,9 +20,7 @@ from error import CommandErrorHandler
 
 from listeners.kiwi_church import KiwiChurch
 
-PREFIX = ','
-
-load_dotenv()
+PREFIX = '.'
 
 client = commands.Bot(command_prefix=PREFIX)
 
@@ -44,7 +40,7 @@ async def setup():
     client.add_cog(Work(client))
     client.add_cog(CommandErrorHandler(client))
     client.add_cog(Changelog(client))
-    # client.add_cog(Ban(client))
+    client.add_cog(Ban(client))
     client.add_cog(KiwiChurch(client))
     # client.add_cog(Shop(client))
     client.add_cog(Send(client))
@@ -57,4 +53,4 @@ async def setup():
 
 client.loop.create_task(setup())
 
-client.run('ODUwODI5MDU5MjEwNzM5NzYz.YLvaTw.1eTl7oP9Mdu_hG7k6Kj9PNSYjAQ')
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
