@@ -6,7 +6,6 @@ from commands.balance import Balance
 from commands.deposit import Deposit
 from commands.withdraw import Withdraw
 from commands.work import Work
-from commands.changelog import Changelog
 from commands.ban import Ban
 from commands.send import Send
 from commands.daily import Daily
@@ -14,8 +13,6 @@ from commands.beg import Beg
 from commands.leaderboard import Leaderboard
 from commands.rob import Rob
 from commands.slots import Slots
-from commands.kiwicord import Kiwicord
-
 from error import CommandErrorHandler
 
 from listeners.kiwi_church import KiwiChurch
