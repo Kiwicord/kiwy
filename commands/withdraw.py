@@ -7,7 +7,7 @@ class Withdraw(commands.Cog):
         self.client = client
         self.err = ''
 
-    @commands.command(aliases=['with'])
+    @commands.command(aliases=['with', 'With', 'WITH'])
     async def withdraw(self, ctx, amount=None):
         bank_amt = await get_bank(ctx.author.id)
         err_embed = discord.Embed(color=0x77dd77, title='')

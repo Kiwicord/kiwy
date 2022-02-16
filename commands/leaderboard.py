@@ -7,7 +7,7 @@ class Leaderboard(commands.Cog):
         self.client = client
 
     
-    @commands.command(aliases=['lb', 'top', 'rich'])
+    @commands.command(aliases=['Leaderboard','lb', 'top', 'rich', 'Lb', 'Top', 'Rich', 'LEADERBOARD', 'LB', 'TOP', 'RICH'])
     async def leaderboard(self, ctx):
         data = bank.find().sort('wallet' , -1)
         embed = discord.Embed(title='<a:kc_bewegendeszeichenlmao:934397592178135121> Leaderboard', description='Top 5 der reichsten User', color=0x77dd77)

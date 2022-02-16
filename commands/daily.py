@@ -7,7 +7,7 @@ class Daily(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases=['Daily', 'DAILY'])
     @commands.cooldown(1, 86400, commands.BucketType.user)
     async def daily(self, ctx):
         income = random.randint(10000, 20000)

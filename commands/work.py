@@ -8,7 +8,7 @@ class Work(commands.Cog):
         self.client = client
 
     @commands.cooldown(1, 3600, commands.BucketType.user)
-    @commands.group(name='work', invoke_without_command=True)
+    @commands.group(name='work', aliases=['Work', 'WORK'] ,invoke_without_command=True)
     async def work(self, ctx, option=None):
         await open_profile(ctx.author.id)
         jobs = await get_jobs()

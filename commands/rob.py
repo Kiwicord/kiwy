@@ -7,7 +7,7 @@ class Rob(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases=['Rob', 'ROB'])
     async def rob(self, ctx, user : discord.Member):
         await open_profile(ctx.author.id)
         await open_profile(user.id)

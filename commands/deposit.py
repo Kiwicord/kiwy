@@ -7,7 +7,7 @@ class Deposit(commands.Cog):
         self.client = client
         self.err = ''
 
-    @commands.command(aliases=['dep'])
+    @commands.command(aliases=['dep', 'Deposit', 'DEP', 'Dep'])
     async def deposit(self, ctx, amount=None):
         wallet_amt = await get_wallet(ctx.author.id)
         err_embed = discord.Embed(color=0x77dd77, title='')

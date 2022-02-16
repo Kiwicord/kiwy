@@ -9,7 +9,7 @@ class Slots(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command()
+    @commands.command(aliases=['Slots', 'SLOTS'])
     async def slots(self, ctx, amt : int):
         await open_profile(ctx.author.id)
         amt = int(amt)
