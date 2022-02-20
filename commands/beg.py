@@ -8,7 +8,7 @@ class Beg(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['Beg', 'BEG'])
-    @commands.cooldown(1, int(60*5), commands.BucketType.user)
+    @commands.cooldown(1, int(60), commands.BucketType.user)
     async def beg(self, ctx):
         wallet = await get_wallet(ctx.author.id)
 
