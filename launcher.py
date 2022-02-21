@@ -22,7 +22,7 @@ async def load(ctx, extension):
 
 @client.command()
 async def unload(ctx, extension):
-    if ctx.author.id == 733403498766401554
+    if ctx.author.id == 733403498766401554:
         client.unload_extension(f'commands.{extension}')
 
 for filename in os.listdir("./commands"):
