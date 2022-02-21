@@ -15,6 +15,7 @@ class Shop(commands.Cog):
             item = shop.find_one({'_id': id})
             if money >= item["cost"]:
                 await buy(item['_id'], ctx.author.id)
+                await update_wallet(ctx.author.id, -1*int(item["cost"]))
                 embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gekauft', description=f'Du hast erfolgreich **{item["name"]}** für **{item["cost"]:,}**🥝 gekauft!')
                 await ctx.reply(embed=embed, mention_author=False)
             else:
@@ -42,9 +43,10 @@ class Shop(commands.Cog):
     async def shop(self, ctx):
         shop_items = await get_shop_items()
         embed = discord.Embed(color=0x77dd77, title='Shop')
+        embed.set_footer(text='Um etwas zu kaufen, verwendet: .buy <ID>')
 
         for item in shop_items:
-            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'{item["description"]}\nKostet: **{item["cost"]:,}**🥝', inline=False)
+            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'{item["description"]}\nID: `{item["id"]}`\nKostet: **{item["cost"]:,}**🥝', inline=False)
         await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
