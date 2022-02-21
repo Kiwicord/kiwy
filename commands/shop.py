@@ -46,7 +46,7 @@ class Shop(commands.Cog):
         embed.set_footer(text='Um etwas zu kaufen, verwendet: .buy <ID>')
 
         for item in shop_items:
-            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'{item["description"]}\nID: `{item["id"]}`\nKostet: **{item["cost"]:,}**🥝', inline=False)
+            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'{item["description"]}\nID: `{item["_id"]}`\nKostet: **{item["cost"]:,}**🥝', inline=False)
         await ctx.reply(embed=embed, mention_author=False)
 
 def setup(client):
