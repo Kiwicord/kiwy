@@ -52,7 +52,7 @@ class Shop(commands.Cog):
     async def shop(self, ctx):
         shop_items = await get_shop_items()
         embed = discord.Embed(color=0x77dd77, title='Shop')
-        embed.set_footer(text='Um ein Item zu kaufen, verwendet: .buy <ID>')
+        embed.set_footer(text='Erfahre mehr über ein Item indem du .item <ID> benutzt.')
 
         for item in shop_items:
             embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'Kostet: **{item["cost"]:,}**🥝\nID: `{item["_id"]}`', inline=False)
@@ -71,6 +71,28 @@ class Shop(commands.Cog):
         except TypeError:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item gibt es nicht!')
             await ctx.reply(embed=error, mention_author=False)
+    
+    @commands.command()
+    async def use(self, ctx, item_id: str):
+        inv = await get_inv(ctx.author.id)
+
+        try:
+            item_obj = shop.find_one({'_id': item_id})
+            if item_obj['type'] == 'collectible':
+                await ctx.send('collectible')
+                return
+            else:
+                if item_id in inv:
+                    bank.update_one({'_id': ctx.author.id}, {'$pull': {'items': item_id}})
+                    bank.update_one({'_id': ctx.author.id}, {'$set': {'active_booster': item_obj['value']}})
+                    embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.TADA} BOOSTER AKTIVIERT!', description=f'Du bekommst ab jetzt **{float(item_obj["value"])*100}%** mehr 🥝!')
+                    await ctx.reply(embed=embed, mention_author=False)
+                    return
+                else:
+                    await ctx.send('not in inv')
+                    return
+        except TypeError:
+            return
 
 def setup(client):
     client.add_cog(Shop(client))
