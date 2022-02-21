@@ -15,13 +15,13 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-@client.command()
-async def load(ctx, extension):
-    client.load_extension(f'commands.{extension}')
+# @client.command()
+# async def load(ctx, extension):
+#     client.load_extension(f'commands.{extension}')
 
-@client.command()
-async def unload(ctx, extension):
-    client.unload_extension(f'commands.{extension}')
+# @client.command()
+# async def unload(ctx, extension):
+#     client.unload_extension(f'commands.{extension}')
 
 for filename in os.listdir("./commands"):
 	if filename.endswith(".py"):
