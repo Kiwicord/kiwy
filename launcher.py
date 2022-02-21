@@ -1,23 +1,9 @@
 import discord
 from discord.ext import commands
 from db import *
+import os
 
-from commands.balance import Balance
-from commands.deposit import Deposit
-from commands.withdraw import Withdraw
-from commands.work import Work
-from commands.ban import Ban
-from commands.send import Send
-from commands.daily import Daily
-from commands.beg import Beg
-from commands.leaderboard import Leaderboard
-from commands.rob import Rob
-from commands.slots import Slots
-from error import CommandErrorHandler
-
-from listeners.kiwi_church import KiwiChurch
-
-PREFIX = '.'
+PREFIX = ','
 
 client = commands.Bot(command_prefix=PREFIX)
 
@@ -29,23 +15,16 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-async def setup():
-    await client.wait_until_ready()
-    client.add_cog(Balance(client))
-    client.add_cog(Deposit(client))
-    client.add_cog(Withdraw(client))    
-    client.add_cog(Work(client))
-    client.add_cog(CommandErrorHandler(client))
-    client.add_cog(Ban(client))
-    client.add_cog(KiwiChurch(client))
-    # client.add_cog(Shop(client))
-    client.add_cog(Send(client))
-    client.add_cog(Daily(client))
-    client.add_cog(Beg(client))
-    client.add_cog(Leaderboard(client))
-    client.add_cog(Rob(client))
-    client.add_cog(Slots(client))
+@client.command()
+async def load(ctx, extension):
+    client.load_extension(f'commands.{extension}')
 
-client.loop.create_task(setup())
+@client.command()
+async def unload(ctx, extension):
+    client.unload_extension(f'commands.{extension}')
 
-client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
+for filename in os.listdir("./commands"):
+	if filename.endswith(".py"):
+		client.load_extension(f"commands.{filename[:-3]}")
+
+client.run('ODUwODI5MDU5MjEwNzM5NzYz.YLvaTw.1eTl7oP9Mdu_hG7k6Kj9PNSYjAQ')
