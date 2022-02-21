@@ -14,6 +14,9 @@ class Shop(commands.Cog):
         try:
             item = shop.find_one({'_id': id})
             if money >= item["cost"]:
+                if item['_id'] == 'waterpass':
+                    channel = self.client.get_channel(942179139660685322)
+                    await channel.send(f'{ctx.author} hat sich gerade eben den **Waterpass** gekauft! <@733403498766401554> <@480265913656934410>')
                 await buy(item['_id'], ctx.author.id)
                 await update_wallet(ctx.author.id, -1*int(item["cost"]))
                 embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gekauft', description=f'Du hast erfolgreich **{item["name"]}** für **{item["cost"]:,}**🥝 gekauft!')
@@ -32,22 +35,42 @@ class Shop(commands.Cog):
         inv = await get_inv(ctx.author.id)
         embed = discord.Embed(color=0x77dd77, title=f"{Kiwicord.EXCLAMATION} {ctx.author}'s Inventar")
 
-        for item in inv:
-            amount = inv.count(item)
-            i = shop.find_one({'_id': item})
-            embed.add_field(name=i['name'], value=f"{i['description']}", inline=False)
-            
+        if len(inv) == 0:
+            embed.title = f'{Kiwicord.EXCLAMATION} Du hast momentan keine Items!'
+            embed.set_footer(text='Besuche den Shop indem du .shop ausführst um Items zu kaufen.')
+            await ctx.reply(embed=embed, mention_author=False)
+            return
+
+        for item in await get_shop_items():
+            amount = inv.count(item["_id"])
+            if amount > 0:
+                embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f"ID: `{item['_id']}`\nStückzahl: `{amount}`", inline=False)
+        embed.set_footer(text='Erfahre mehr über ein Item indem du .item <ID> benutzt.')
         await ctx.reply(embed=embed, mention_author=False)
     
     @commands.command()
     async def shop(self, ctx):
         shop_items = await get_shop_items()
         embed = discord.Embed(color=0x77dd77, title='Shop')
-        embed.set_footer(text='Um etwas zu kaufen, verwendet: .buy <ID>')
+        embed.set_footer(text='Um ein Item zu kaufen, verwendet: .buy <ID>')
 
         for item in shop_items:
-            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'{item["description"]}\nID: `{item["_id"]}`\nKostet: **{item["cost"]:,}**🥝', inline=False)
+            embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'Kostet: **{item["cost"]:,}**🥝\nID: `{item["_id"]}`', inline=False)
         await ctx.reply(embed=embed, mention_author=False)
+    
+    @commands.command()
+    async def item(self, ctx, item_id: str):
+        inv = await get_inv(ctx.author.id)
+        try:
+            amount = inv.count(item_id)
+            item = shop.find_one({'_id': item_id})
+            embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Informationen über: {item["name"]}', description=f'{item["description"]}\n\nName: **{item["name"]}**\nKostet: **{item["cost"]:,}**🥝\nID: `{item_id}`\n\nDu besitzt: `{amount}`')
+            embed.set_thumbnail(url=item['image_url'])
+            embed.set_footer(text=f'Um dieses Item zu kaufen, benutze .buy {item_id}')
+            await ctx.reply(embed=embed, mention_author=False)
+        except TypeError:
+            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item gibt es nicht!')
+            await ctx.reply(embed=error, mention_author=False)
 
 def setup(client):
     client.add_cog(Shop(client))
