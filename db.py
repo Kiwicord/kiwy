@@ -5,7 +5,7 @@ import asyncio
 cluster = MongoClient('mongodb+srv://kiwious:iyCnc4g0DIv1XyUL@cluster0.ju2ct.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 db = cluster['Cluster0']
 bank = db['kiwy-economy']
-shop = db['kiwy-economy-shop']
+shop = db['kiwy-shop-items']
 inventory = db['kiwy-economy-inv']
 work_db = db['kiwy-work-table']
 
@@ -63,3 +63,19 @@ async def get_jobs():
 
 async def get_job(job_id):
     return work_db.find_one({'_id': job_id})
+
+# shop
+async def buy(item_id, user_id):
+    bank.update_one({'_id': user_id}, {'$push': {'items': item_id}})
+
+async def get_inv(user_id):
+    user = bank.find_one({'_id': user_id})
+    user_inv = user['items']
+    return user_inv
+
+async def get_shop_items():
+    return shop.find()
+
+async def get_booster(_id):
+    user = bank.find_one({'_id': _id})
+    return user['active_booster']
