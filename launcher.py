@@ -3,7 +3,7 @@ from discord.ext import commands
 from db import *
 import os
 
-PREFIX = ','
+PREFIX = '.'
 
 client = commands.Bot(command_prefix=PREFIX)
 
@@ -27,4 +27,4 @@ for filename in os.listdir("./commands"):
 	if filename.endswith(".py"):
 		client.load_extension(f"commands.{filename[:-3]}")
 
-client.run('ODUwODI5MDU5MjEwNzM5NzYz.YLvaTw.1eTl7oP9Mdu_hG7k6Kj9PNSYjAQ')
+client.run('NzMzOTY2MzgwNDk5NTk5MzYx.XxK1dQ.MEildqfX5bMb13iWqfSvcC62va8')
