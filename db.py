@@ -20,7 +20,9 @@ async def open_profile(_id):
                 '_id': _id,
                 'wallet': 0,
                 'bank': 0,
-                'job': 'unemployed'
+                'job': 'unemployed',
+                'items': [],
+                'active_booster': '1'
             }
         )
 
@@ -81,3 +83,6 @@ async def get_shop_items():
 async def get_booster(_id):
     user = bank.find_one({'_id': _id})
     return user['active_booster']
+
+bank.update_many({}, {'$set': {'items': []}})
+bank.update_many({}, {'$set': {'active_booster': "1"}})
