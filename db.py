@@ -83,6 +83,3 @@ async def get_shop_items():
 async def get_booster(_id):
     user = bank.find_one({'_id': _id})
     return user['active_booster']
-
-bank.update_many({}, {'$set': {'items': []}})
-bank.update_many({}, {'$set': {'active_booster': "1"}})
