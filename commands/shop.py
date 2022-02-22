@@ -66,7 +66,7 @@ class Shop(commands.Cog):
             item = shop.find_one({'_id': item_id})
             embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Informationen über: {item["name"]}', description=f'{item["description"]}\n\nName: **{item["name"]}**\nKostet: **{item["cost"]:,}**🥝\nID: `{item_id}`\n\nDu besitzt: `{amount}`')
             embed.set_thumbnail(url=item['image_url'])
-            embed.set_footer(text=f'Um dieses Item zu kaufen, benutze .buy {item_id}')
+            embed.set_footer(text=f'Um dieses Item zu kaufen, benutze: .buy {item_id}')
             await ctx.reply(embed=embed, mention_author=False)
         except TypeError:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item gibt es nicht!')
@@ -75,7 +75,6 @@ class Shop(commands.Cog):
     @commands.command()
     async def use(self, ctx, item_id: str):
         inv = await get_inv(ctx.author.id)
-
         try:
             item_obj = shop.find_one({'_id': item_id})
             if item_obj['type'] == 'collectible':
@@ -89,9 +88,12 @@ class Shop(commands.Cog):
                     await ctx.reply(embed=embed, mention_author=False)
                     return
                 else:
-                    await ctx.send('not in inv')
+                    error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Du besitzt dieses Item nicht!')
+                    await ctx.reply(embed=error, mention_author=False)
                     return
         except TypeError:
+            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item existiert nicht!')
+            await ctx.reply(embed=error, mention_author=False)
             return
 
 def setup(client):

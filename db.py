@@ -35,9 +35,11 @@ async def get_bank(_id):
     return user['bank']
 
 async def update_wallet(_id, amount):
+    booster = await get_booster(_id)
+    booster = float(booster)
     await open_profile(_id)
     wallet_amt = await get_wallet(_id)
-    bank.update_one({'_id': _id,}, {'$set': {'wallet': wallet_amt+int(amount)}})
+    bank.update_one({'_id': _id,}, {'$set': {'wallet': wallet_amt+(int(amount)*booster)}})
 
 async def update_bank(_id, amount):
     await open_profile(_id)
