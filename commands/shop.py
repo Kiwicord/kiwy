@@ -15,7 +15,7 @@ class Shop(commands.Cog):
             item = shop.find_one({'_id': id})
             if money >= item["cost"]:
                 if item['_id'] == 'waterpass':
-                    channel = self.client.get_channel(942179139660685322)
+                    channel = self.client.get_channel(945401190705926144)
                     await channel.send(f'{ctx.author} hat sich gerade eben den **Waterpass** gekauft! <@733403498766401554> <@480265913656934410>')
                 await buy(item['_id'], ctx.author.id)
                 await update_wallet(ctx.author.id, -1*int(item["cost"]))
