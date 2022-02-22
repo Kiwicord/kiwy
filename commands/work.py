@@ -30,7 +30,8 @@ class Work(commands.Cog):
             user = bank.find_one({'_id': ctx.author.id})
             user_job = user['job']
             worktable = await get_job(user_job)
-            income = worktable['income']
+            booster = await get_booster(ctx.author.id)
+            income = worktable['income'] * float(booster)
             job_name = worktable['name']
             await update_wallet(ctx.author.id, income)
             work_embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gute Arbeit!', description=f'Du hast als **{job_name}** gearbeitet und hast **{income:,}**🥝 verdient')

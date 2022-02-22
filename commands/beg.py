@@ -13,8 +13,9 @@ class Beg(commands.Cog):
         wallet = await get_wallet(ctx.author.id)
 
         PROB = ['yes', 'yes', 'yes', 'yes', 'yes', 'yes', 'no','no','no','no', ]
-
-        income = random.randint(10, 250)
+        
+        booster = await get_booster(ctx.author.id)
+        income = random.randint(10, 250) * float(booster)
         embed_fail = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Erwischt!', description=f'Du wurdest beim Geld erbitten erwischt! Du zahlst **{income}**🥝 als Strafgeld.')
         embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Jemand zahlt!', description=f'Irgendwer hat dir **{int(income):,}**🥝 auf die Hand gegeben.')
         CHANCE = random.choice(PROB)
