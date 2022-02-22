@@ -78,7 +78,8 @@ class Shop(commands.Cog):
         try:
             item_obj = shop.find_one({'_id': item_id})
             if item_obj['type'] == 'collectible':
-                await ctx.send('collectible')
+                error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item kannst du nicht benutzen!')
+                await ctx.reply(embed=error, mention_author=False)
                 return
             else:
                 if item_id in inv:
