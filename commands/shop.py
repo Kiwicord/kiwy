@@ -9,6 +9,7 @@ class Shop(commands.Cog):
     
     @commands.command()
     async def buy(self, ctx, id: str):
+        await open_profile(ctx.author.id)
         error = discord.Embed(color=0x77dd77)
         money = await get_wallet(ctx.author.id)
         try:
@@ -32,6 +33,7 @@ class Shop(commands.Cog):
 
     @commands.command()
     async def inv(self, ctx):
+        await open_profile(ctx.author.id)
         inv = await get_inv(ctx.author.id)
         embed = discord.Embed(color=0x77dd77, title=f"{Kiwicord.EXCLAMATION} {ctx.author}'s Inventar")
 
@@ -50,6 +52,7 @@ class Shop(commands.Cog):
     
     @commands.command()
     async def shop(self, ctx):
+        await open_profile(ctx.author.id)
         shop_items = await get_shop_items()
         embed = discord.Embed(color=0x77dd77, title='Shop')
         embed.set_footer(text='Erfahre mehr über ein Item indem du .item <ID> benutzt.')
@@ -60,6 +63,7 @@ class Shop(commands.Cog):
     
     @commands.command()
     async def item(self, ctx, item_id: str):
+        await open_profile(ctx.author.id)
         inv = await get_inv(ctx.author.id)
         try:
             amount = inv.count(item_id)
@@ -74,6 +78,7 @@ class Shop(commands.Cog):
     
     @commands.command()
     async def use(self, ctx, item_id: str):
+        await open_profile(ctx.author.id)
         inv = await get_inv(ctx.author.id)
         try:
             item_obj = shop.find_one({'_id': item_id})
