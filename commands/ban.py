@@ -12,8 +12,10 @@ class Ban(commands.Cog):
         if member is None:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gib den User an der gebannt werden soll!')
             await ctx.reply(embed=error, mention_author=False)
+            return
+
         if member == ctx.author:
-            error.title = f'{Kiwicord.EXCLAMATION} Du kannst dich selber nicht bannen!'
+            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Du kannst dich selber nicht bannen!')
             await ctx.send(embed=error)
         embed1 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gebannt!', description=f'Der Member {member.mention} wurde gebannt.')
         embed2 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gebannt!', description=f'Du wurdest von **{ctx.guild.name}** gebannt.\n<:kc_punkt:924409447147786261> **{reason}**')
