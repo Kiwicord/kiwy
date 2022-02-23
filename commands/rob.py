@@ -22,6 +22,9 @@ class Rob(commands.Cog):
             rob_amount = random.randrange(int(target_wallet))
             rob_embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Ausgeraubt!', description=f'Du hast {user.mention} ausgeraubt und dadurch **{int(rob_amount):,}**🥝 verdient.')
 
+            if user.id == 712341730480881707 or 400341760569507841:
+                return
+                
             if robber_wallet >= START_AMOUNT:
 
                 if rob_amount <= 3:
