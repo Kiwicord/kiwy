@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from emojis import Kiwicord
 
 class CommandErrorHandler(commands.Cog):
 
@@ -38,11 +39,17 @@ class CommandErrorHandler(commands.Cog):
         if isinstance(error, commands.CommandNotFound):
             embedlol = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Dieser Befehl wurde nicht gefunden!')
             await ctx.reply(embed=embedlol, mention_author=False)
+        
+        if isinstance(error, commands.MissingPermissions):
+            error_embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dazu hast du keine Rechte!')
+            await ctx.reply(embed=error_embed, mention_author=False)
 
         if isinstance(error, commands.CommandError):
             if isinstance(error, commands.CommandOnCooldown):
                 return
             if isinstance(error, commands.CommandNotFound):
+                return
+            if isinstance(error, commands.MissingPermissions):
                 return
             embed = discord.Embed(title="Fehler!", color=0x77dd77, description=f"```{error}```")
             embed.set_footer(text="Um den Fehler zu reporten, wende dich bitte an das Serverteam.")

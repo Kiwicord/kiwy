@@ -14,6 +14,7 @@ class Deposit(commands.Cog):
         if amount is None:
             err_embed.title = '<a:kc_bewegendeszeichenlmao:934397592178135121> Bitte gib den Betrag an!'
             await ctx.reply(embed=err_embed, mention_author=False)
+            return
 
         if amount == 'all':
             amount = int(wallet_amt)

@@ -11,9 +11,8 @@ class Slots(commands.Cog):
         self.client = client
 
     @commands.command(aliases=['Slots', 'SLOTS'])
-    async def slots(self, ctx, amt : int=None):
+    async def slots(self, ctx, amt=None):
         await open_profile(ctx.author.id)
-        amt = int(amt)
         wallet_amount = await get_wallet(ctx.author.id)
 
         chance1 = random.choice(EMOJIS)
@@ -26,13 +25,18 @@ class Slots(commands.Cog):
             return
         
         if amt == 'all' or 'max':
+            await ctx.send('es ist all oder max')
+            if wallet_amount <= 0:
+                not_enough_money = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Nicht genügend Geld!')
+                await ctx.reply(embed=not_enough_money, mention_author=False)
+                return   
             amt = wallet_amount
-
+            
+        amt = int(amt)
         if wallet_amount < amt:
             not_enough_money = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Nicht genügend Geld!')
             await ctx.reply(embed=not_enough_money, mention_author=False)
             return
-        
         if chance1 == chance2 and chance1 == chance3:
             win_embed = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gewonnen!', description=f'> {chance1}  {chance2}  {chance3}\nDu hast **{amt:,}**🥝 verdient.')
             await update_wallet(ctx.author.id, amt)
@@ -43,7 +47,6 @@ class Slots(commands.Cog):
             await update_wallet(ctx.author.id, -1*amt)
             await ctx.reply(embed=loose_embed, mention_author=False)
             return
-        
 
 def setup(client):
     client.add_cog(Slots(client))
