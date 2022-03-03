@@ -37,8 +37,8 @@ async def get_bank(_id):
     return user['bank']
 
 async def update_wallet(_id, amount):
-    if _id == 931973678021873795:
-        return
+    #if _id == 931973678021873795:
+        #return
     booster = await get_booster(_id)
     booster = float(booster)
     await open_profile(_id)
