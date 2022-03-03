@@ -7,7 +7,7 @@ class Send(commands.Cog):
         self.client = client
         self.err = ''
 
-    @commands.command(aliases=['Send', 'SEND'])
+    @commands.command(aliases=['Send', 'SEND', 'pay', 'PAY'])
     async def send(self, ctx, member : discord.Member, amount : int=None):
         wallet_amt = await get_wallet(ctx.author.id)
         err_embed = discord.Embed(color=0x77dd77, title='')
