@@ -8,6 +8,8 @@ bank = db['kiwy-economy']
 shop = db['kiwy-shop-items']
 inventory = db['kiwy-economy-inv']
 work_db = db['kiwy-work-table']
+flag_data = db['kiwy-flag-data']
+flags = db['kiwy-flags']
 
 # main economy
 # --------------------------------------------------------
