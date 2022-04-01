@@ -24,7 +24,8 @@ class FlagQuiz(commands.Cog):
             random_flag = flags.aggregate([{'$sample': {'size': 1}}])
             for flag in random_flag:
                 flag_embed = discord.Embed(color=0x77dd77, title='🚩 Errate diese Flagge!')
-                flag_embed.set_image(url=flag['link'])
+                link = flag['link']
+                flag_embed.set_image(url=link)
                 await ctx.send(embed=flag_embed)
 
             while True:
