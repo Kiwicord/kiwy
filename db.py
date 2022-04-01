@@ -41,9 +41,9 @@ async def get_bank(_id):
 async def update_wallet(_id, amount):
     #if _id == 931973678021873795:
         #return
+    await open_profile(_id)
     booster = await get_booster(_id)
     booster = float(booster)
-    await open_profile(_id)
     wallet_amt = await get_wallet(_id)
     bank.update_one({'_id': _id,}, {'$set': {'wallet': wallet_amt+int(amount)}})
 
