@@ -9,6 +9,13 @@ class Ban(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member=None, *, reason='Kein Grund angegeben'):
+        role = discord.utils.find(lambda r: r.name == '│📋 × Moderator', ctx.message.guild.roles)
+
+        if role in member.roles:
+            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Stop!', description=f'Du kannst {member.mention} nicht bannen!')
+            await ctx.send(embed=error)
+            return
+
         if member is None:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gib den User an der gebannt werden soll!')
             await ctx.reply(embed=error, mention_author=False)
@@ -17,6 +24,7 @@ class Ban(commands.Cog):
         if member == ctx.author:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Du kannst dich selber nicht bannen!')
             await ctx.send(embed=error)
+            return
         embed1 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gebannt!', description=f'Der Member {member.mention} wurde gebannt.')
         embed2 = discord.Embed(color=0x77dd77, title='<a:kc_bewegendeszeichenlmao:934397592178135121> Gebannt!', description=f'Du wurdest von **{ctx.guild.name}** gebannt.\n<:kc_punkt:924409447147786261> **{reason}**')
         await member.ban(reason=reason)
