@@ -11,13 +11,16 @@ class Kick(commands.Cog):
     async def kick(self, ctx, member: discord.Member=None, *, reason='Kein Grund angegeben'):
         role = discord.utils.find(lambda r: r.name == '│📋 × Moderator', ctx.message.guild.roles)
 
-        if role in member.roles:
-            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Stop!', description=f'Du kannst {member.mention} nicht kicken!')
-            await ctx.send(embed=error)
-            return
+
         if member is None:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gib den User an der gekickt werden soll!')
             await ctx.reply(embed=error, mention_author=False)
+            return
+
+        
+        if role in member.roles:
+            error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Stop!', description=f'Du kannst {member.mention} nicht kicken!')
+            await ctx.send(embed=error)
             return
 
         if member == ctx.author:
