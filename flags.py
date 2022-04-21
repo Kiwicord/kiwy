@@ -13,3 +13,6 @@ async def send_flag(channel):
 
 async def get_channel(guild):
     return flag_data.find_one({'guild': guild})
+
+async def add_flag(img_link, name):
+    flags.insert_one({'name': name, 'link': img_link})

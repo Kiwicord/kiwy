@@ -16,7 +16,7 @@ class FlagQuiz(commands.Cog):
         await ctx.send(f'Dieser Channel wurde nun als Flaggen Channel eingerichtet')
 
     @commands.command()
-    async def random_flag(self, ctx):
+    async def flag(self, ctx):
         guild = await get_channel(ctx.guild.id)
         channel = guild['channel']
 
@@ -35,7 +35,7 @@ class FlagQuiz(commands.Cog):
 
                 async def next_flag(interaction: discord.Interaction):
                     await interaction.channel.purge(limit=100)
-                    await self.random_flag(ctx)
+                    await self.flag(ctx)
                     return
                 
                 button.callback = next_flag
@@ -46,18 +46,29 @@ class FlagQuiz(commands.Cog):
             while True:
                 response = await self.client.wait_for('message')
                 if response.channel.id == channel:
-                    if response.content == flag['name']:
+                    if response.content == flag["name"]:
                         income = random.randint(1, 10)
                         embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Richtig! Du hast **{income}**🥝 verdient.')
                         await update_wallet(response.author.id, income)
                         await response.reply(embed=embed)
                         await asyncio.sleep(1)
                         await response.channel.purge(limit=100)
-                        await self.random_flag(ctx) 
+                        await self.flag(ctx) 
                         return
-                    if response.content.embeds.len > 0:
-                        pass
-                    await response.add_reaction('❌')
+
+                    if response.embeds: # if message has embed (skipped flag)
+                        return
+
+                    if response.content != flag['name']:
+                        await response.add_reaction('❌')
+    
+    @commands.command()
+    async def add(self, ctx, link: str, *, name: str):
+        if ctx.author.id == 733403498766401554:
+            await add_flag(link, name)
+            await ctx.send(f'Die Flagge von **{name}** wurde erfolgreich zur Datenbank hinzugefügt! 😺\n🔗 <{link}>')
+        else:
+            raise commands.CommandNotFound
     
 def setup(client):
     client.add_cog(FlagQuiz(client))
