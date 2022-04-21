@@ -9,7 +9,7 @@ class CommandErrorHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
-
+        
         if isinstance(error, commands.CommandOnCooldown):
             seconds = round(error.retry_after)
             hours = int(seconds / 3600)
@@ -51,6 +51,8 @@ class CommandErrorHandler(commands.Cog):
                 return
             if isinstance(error, commands.MissingPermissions):
                 return
+            if isinstance(error, AttributeError):
+                pass
             embed = discord.Embed(title="Fehler!", color=0x77dd77, description=f"```{error}```")
             embed.set_footer(text="Um den Fehler zu reporten, wende dich bitte an das Serverteam.")
             ctx.command.reset_cooldown(ctx)

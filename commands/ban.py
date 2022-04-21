@@ -11,8 +11,6 @@ class Ban(commands.Cog):
     async def ban(self, ctx, member: discord.Member=None, *, reason='Kein Grund angegeben'):
         role = discord.utils.find(lambda r: r.name == '│📋 × Moderator', ctx.message.guild.roles)
 
-
-
         if member is None:
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Gib den User an der gebannt werden soll!')
             await ctx.reply(embed=error, mention_author=False)

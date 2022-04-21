@@ -1,5 +1,6 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
+from discord.ui import Button, View
 from flags import *
 import asyncio
 from emojis import Kiwicord
@@ -26,7 +27,21 @@ class FlagQuiz(commands.Cog):
                 flag_embed = discord.Embed(color=0x77dd77, title='🚩 Errate diese Flagge!')
                 link = flag['link']
                 flag_embed.set_image(url=link)
-                await ctx.send(embed=flag_embed)
+
+                button = Button(label='Flagge überspringen', style=discord.ButtonStyle.green, emoji='🤔')
+
+                view = View()
+                view.add_item(button)
+
+                async def next_flag(interaction: discord.Interaction):
+                    await interaction.channel.purge(limit=100)
+                    await self.random_flag(ctx)
+                    return
+                
+                button.callback = next_flag
+                
+                await ctx.send(embed=flag_embed, view=view)
+                
 
             while True:
                 response = await self.client.wait_for('message')
@@ -37,10 +52,12 @@ class FlagQuiz(commands.Cog):
                         await update_wallet(response.author.id, income)
                         await response.reply(embed=embed)
                         await asyncio.sleep(1)
-                        await self.random_flag(ctx)
+                        await response.channel.purge(limit=100)
+                        await self.random_flag(ctx) 
                         return
-                    else:
-                        await response.add_reaction('❌')
+                    if response.content.embeds.len > 0:
+                        pass
+                    await response.add_reaction('❌')
     
 def setup(client):
     client.add_cog(FlagQuiz(client))
