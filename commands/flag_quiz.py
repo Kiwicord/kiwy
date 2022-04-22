@@ -21,7 +21,6 @@ class FlagQuiz(commands.Cog):
         channel = guild['channel']
 
         if ctx.channel.id == channel:
-
             random_flag = flags.aggregate([{'$sample': {'size': 1}}])
             for flag in random_flag:
                 flag_embed = discord.Embed(color=0x77dd77, title='🚩 Errate diese Flagge!')

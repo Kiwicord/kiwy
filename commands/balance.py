@@ -7,7 +7,7 @@ class Balance(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(aliases=['bal', 'Balance', 'BAL'])
+    @commands.command(aliases=['bal', 'Bal', 'Balance', 'BAL'])
     async def balance(self, ctx, member: discord.User=None):
         if member is None:
             member = ctx.author

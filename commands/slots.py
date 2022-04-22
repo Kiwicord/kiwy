@@ -25,7 +25,7 @@ class Slots(commands.Cog):
             return
         
         if amt == 'all' or 'max':
-            await ctx.send('es ist all oder max')
+            # await ctx.send('es ist all oder max')
             if wallet_amount <= 0:
                 not_enough_money = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Nicht genügend Geld!')
                 await ctx.reply(embed=not_enough_money, mention_author=False)
