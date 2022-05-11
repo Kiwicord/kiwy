@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from commands.flag_quiz import FlagQuiz
 from db import *
 import os
 
