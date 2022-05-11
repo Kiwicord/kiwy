@@ -46,8 +46,6 @@ MarkupSafe==2.0.1
 MouseInfo==0.1.3
 multidict==5.1.0
 mysql-connector-python==8.0.26
-neat==0.4.1
-neat-python==0.92
 numpy==1.21.2
 oauthlib==3.1.1
 pafy==0.5.5
