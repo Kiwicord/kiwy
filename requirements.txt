@@ -20,7 +20,7 @@ click==8.0.1
 colorama==0.4.4
 cryptography==3.4.7
 cssselect==1.1.0
-discord.py==1.7.3
+discord.py @ git+https://github.com/Rapptz/discord.py@fd9c244f480ae12f972daf2ffe34ae83125847fe
 distlib==0.3.3
 Django==3.2.9
 dnspython==2.1.0
