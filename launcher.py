@@ -10,6 +10,7 @@ client.remove_command('help')
 
 @client.event
 async def on_ready():
+    # os.system('cls')
     print('------')
     print('Logged in as')
     print(client.user.name)
