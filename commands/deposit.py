@@ -33,5 +33,5 @@ class Deposit(commands.Cog):
         await deposit_amt(ctx.author.id, amount=int(amount))
         await ctx.reply(embed=embed, mention_author=False)
 
-def setup(client):
-    client.add_cog(Deposit(client))
+async def setup(client):
+    await client.add_cog(Deposit(client))

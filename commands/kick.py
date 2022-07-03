@@ -33,5 +33,5 @@ class Kick(commands.Cog):
         await member.send(embed=embed2)
         await ctx.reply(embed=embed1, mention_author=False)
 
-def setup(client):
-    client.add_cog(Kick(client))
+async def setup(client):
+    await client.add_cog(Kick(client))

@@ -32,5 +32,5 @@ class Buy(commands.Cog):
             return  
     
 
-def setup(client):
-    client.add_cog(Buy(client))
+async def setup(client):
+    await client.add_cog(Buy(client))

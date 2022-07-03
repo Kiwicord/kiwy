@@ -37,5 +37,5 @@ class Knast(commands.Cog):
         else:
             raise commands.CommandNotFound
 
-def setup(client):
-    client.add_cog(Knast(client))
+async def setup(client):
+    await client.add_cog(Knast(client))

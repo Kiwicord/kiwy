@@ -48,5 +48,5 @@ class Slots(commands.Cog):
             await ctx.reply(embed=loose_embed, mention_author=False)
             return
 
-def setup(client):
-    client.add_cog(Slots(client))
+async def setup(client):
+    await client.add_cog(Slots(client))

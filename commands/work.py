@@ -89,5 +89,5 @@ class Work(commands.Cog):
             return
 
                 
-def setup(client):
-    client.add_cog(Work(client))
+async def setup(client):
+    await client.add_cog(Work(client))

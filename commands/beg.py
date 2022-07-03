@@ -33,5 +33,5 @@ class Beg(commands.Cog):
             await ctx.reply(embed=embed_fail, mention_author=False)
             return
 
-def setup(client):
-    client.add_cog(Beg(client))
+async def setup(client):
+    await client.add_cog(Beg(client))
