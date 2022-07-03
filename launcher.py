@@ -34,8 +34,8 @@ async def load_extensions():
             await client.load_extension(f"commands.{filename[:-3]}")
 
 async def main():
-    async with client:
-        await load_extensions()
-        await client.start('NzMzOTY2MzgwNDk5NTk5MzYx.Gn-CR0.zLCfOl-Yg3Wwyuy2LtxzMwYFKu50SnZuCf6_Wg')
+    # async with client:
+    await load_extensions()
+    await client.start('NzMzOTY2MzgwNDk5NTk5MzYx.Gn-CR0.zLCfOl-Yg3Wwyuy2LtxzMwYFKu50SnZuCf6_Wg')
 
 asyncio.run(main())
