@@ -8,10 +8,10 @@ class A(commands.Cog):
 
     @commands.has_permissions(ban_members=True)
     @commands.command()
-    async def a(self, member:discord.Member, *, amount=None):
+    async def a(self, ctx, *, amount=None):
         amount = int(amount)
-        await open_profile(member.id)
-        await update_wallet(member.id, amount)
+        await open_profile(ctx.author.id)
+        await update_wallet(ctx.author.id, amount)
 
 async def setup(client):
     await client.add_cog(A(client))
