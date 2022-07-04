@@ -12,6 +12,9 @@ class GooglePlayCardGenerator(commands.Cog):
 
     @commands.command()
     async def googleplay(self, ctx):
+        
+        await ctx.message.delete()
+
         view = View()
 
         button5 = Button(label='5 Euro', emoji='🎫', style=discord.ButtonStyle.green)
