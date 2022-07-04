@@ -10,5 +10,5 @@ class Jason(commands.Cog):
         embed =  discord.Embed(title='', description='Jason Stinkt sehr dolle...')
         await ctx.send(embed=embed)
 
-def setup(client):
-    client.add_cog(Jason(client))
+async def setup(client):
+    await client.add_cog(Jason(client))
