@@ -31,5 +31,5 @@ class Send(commands.Cog):
         await update_wallet(ctx.author.id, amount=-1*amount)
         await ctx.reply(embed=embed, mention_author=False)
 
-def setup(client):
-    client.add_cog(Send(client))
+async def setup(client):
+    await client.add_cog(Send(client))

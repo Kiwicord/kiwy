@@ -18,5 +18,5 @@ class Shop(commands.Cog):
             embed.add_field(name=f"{Kiwicord.DOT} {item['name']}", value=f'Kostet: **{item["cost"]:,}**🥝\nID: `{item["_id"]}`', inline=False)
         await ctx.reply(embed=embed, mention_author=False)
 
-def setup(client):
-    client.add_cog(Shop(client))
+async def setup(client):
+    await client.add_cog(Shop(client))

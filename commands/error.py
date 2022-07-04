@@ -56,5 +56,5 @@ class CommandErrorHandler(commands.Cog):
     #         ctx.command.reset_cooldown(ctx)
     #         await ctx.send(embed=embed, mention_author=False)
 
-def setup(client):
-    client.add_cog(CommandErrorHandler(client)) 
+async def setup(client):
+    await client.add_cog(CommandErrorHandler(client)) 

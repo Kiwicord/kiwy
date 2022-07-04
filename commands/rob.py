@@ -47,5 +47,5 @@ class Rob(commands.Cog):
             fail_embed = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Der User hat nicht genügend Geld!')
             await ctx.reply(embed=fail_embed, mention_author=False)
 
-def setup(client):
-    client.add_cog(Rob(client))
+async def setup(client):
+    await client.add_cog(Rob(client))

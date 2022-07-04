@@ -29,5 +29,5 @@ class Booster(commands.Cog):
             embed.title = f'{Kiwicord.EXCLAMATION} Aktiver Booster von {user}'
             embed.description = f'{user.mention} bekommt momentan **{float(await get_booster(user.id))*100}%** mehr 🥝'
         await ctx.reply(embed=embed, mention_author=False)
-def setup(client):
-    client.add_cog(Booster(client))
+async def setup(client):
+    await client.add_cog(Booster(client))

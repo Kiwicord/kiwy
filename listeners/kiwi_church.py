@@ -13,5 +13,5 @@ class KiwiChurch(commands.Cog):
             if message.content != '<:kiwi_beten:934860398304329778>':
                 await message.delete()
                 
-def setup(client):
-    client.add_cog(KiwiChurch(client))
+async def setup(client):
+    await client.add_cog(KiwiChurch(client))

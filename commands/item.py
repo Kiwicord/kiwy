@@ -22,5 +22,5 @@ class Item(commands.Cog):
             error = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Dieses Item gibt es nicht!')
             await ctx.reply(embed=error, mention_author=False)
     
-def setup(client):
-    client.add_cog(Item(client))
+async def setup(client):
+    await client.add_cog(Item(client))
