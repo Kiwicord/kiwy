@@ -32,5 +32,19 @@ class Modmail(commands.Cog):
 
         await self.client.process_commands(message)
 
+    @commands.command()
+    async def reply(ctx, member, *, args):
+        embed = discord.Embed(color=0x77dd77)
+        embed.add_field(name="Server Team", value=args)
+        await member.send(embed=embed)
+        await ctx.message.add_reaction('✅')
+
+    @commands.command()
+    async def close(ctx, member : discord.Member, *, reason='Kein Grund angegeben'):
+        c = ctx.channel
+        await c.delete(reason=reason)
+        embed = discord.Embed(color=0xDD2E44, title='Dein Ticket wurde geschlossen', description=f'**Grund:** {reason}')
+        await member.send(f"Your ticket has been closed. Reason: **{reason}**")
+
 async def setup(client):
     await client.add_cog(Modmail(client))
