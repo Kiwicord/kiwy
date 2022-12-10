@@ -31,3 +31,6 @@ class Modmail(commands.Cog):
 
 
         await self.client.process_commands(message)
+
+async def setup(client):
+    await client.add_cog(Modmail(client))
