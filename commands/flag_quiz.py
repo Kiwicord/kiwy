@@ -47,8 +47,8 @@ class FlagQuiz(commands.Cog):
                 response = await self.client.wait_for('message')
                 if response.channel.id == channel:
                     if response.content == flag["name"]:
-                        income = random.randint(1, 15)
-                        embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Richtig! Du hast **{income}**🥝 verdient.')
+                        income = random.randint(500, 1200)
+                        embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Richtig! Du hast **{income:,}**🥝 verdient.')
                         await update_wallet(response.author.id, income)
                         await response.reply(embed=embed)
                         await asyncio.sleep(1)
