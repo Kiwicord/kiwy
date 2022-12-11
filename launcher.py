@@ -2,6 +2,11 @@ import discord
 from discord.ext import commands
 from db import *
 import os
+import sys 
+import logging
+
+logging.basicConfig(stream=sys.stdout, level=logging.ERROR)
+
 
 PREFIX = '.'
 
