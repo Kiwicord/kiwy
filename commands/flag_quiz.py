@@ -28,16 +28,16 @@ class FlagQuiz(commands.Cog):
                 link = flag['link']
                 flag_embed.set_image(url=link)
 
-                button = Button(label='Flagge überspringen', style=discord.ButtonStyle.green, emoji='🤔')
+                button = Button(label='Flagge überspringen (100🥝)', style=discord.ButtonStyle.green, emoji='🤔')
 
                 view = View()
                 view.add_item(button)
 
                 async def next_flag(interaction: discord.Interaction):
+                    await interaction.user.send('Dir wurden **100🥝** abgezogen, weil du eine Flagge in <#987404727102873641> übersprungen hast.')
                     await update_wallet(ctx.author.id, amount= -1*100)
                     await interaction.channel.purge(limit=100)
                     await self.flag(ctx)
-                    await ctx.author.send('Dir wurden **100🥝** abgezogen, weil du eine Flagge in <#987404727102873641> übersprungen hast.')
                     return
                 
                 button.callback = next_flag
