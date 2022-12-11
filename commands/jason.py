@@ -7,7 +7,7 @@ class Jason(commands.Cog):
 
     @commands.command()
     async def jason(self, ctx):
-        embed =  discord.Embed(title='', description='Jason Stinkt sehr dolle...')
+        embed =  discord.Embed(title='', description='<@745717254678904862>')
         await ctx.send(embed=embed)
 
 async def setup(client):
