@@ -34,8 +34,10 @@ class FlagQuiz(commands.Cog):
                 view.add_item(button)
 
                 async def next_flag(interaction: discord.Interaction):
+                    await update_wallet(ctx.author.id, amount= -1*100)
                     await interaction.channel.purge(limit=100)
                     await self.flag(ctx)
+                    await ctx.author.send('Dir wurden **100🥝** abgezogen, weil du eine Flagge in <#987404727102873641> übersprungen hast.')
                     return
                 
                 button.callback = next_flag
@@ -47,16 +49,16 @@ class FlagQuiz(commands.Cog):
                 response = await self.client.wait_for('message')
                 if response.channel.id == channel:
                     if response.content == flag["name"]:
-                        income = random.randint(1, 15)
+                        income = random.randint(5, 15)
                         embed = discord.Embed(color=0x77dd77, title=f'{Kiwicord.EXCLAMATION} Richtig! Du hast **{income}**🥝 verdient.')
                         await update_wallet(response.author.id, income)
                         await response.reply(embed=embed)
                         await asyncio.sleep(1)
-                        await response.channel.purge(limit=100)
+                        await response.channel.purge(limit=100) 
                         await self.flag(ctx) 
                         return
 
-                    if response.embeds: # if message has embed (skipped flag)
+                    if response.embeds: # if message has embed (skipped flag) 
                         return
 
                     if response.content != flag['name']:
