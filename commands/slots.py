@@ -30,7 +30,6 @@ class Slots(commands.Cog):
                 not_enough_money = discord.Embed(color=0xff6961, title='<a:7732exclamationred:939902470111522856> Nicht genügend Geld!')
                 await ctx.reply(embed=not_enough_money, mention_author=False)
                 return   
-            amt = wallet_amount
             
         amt = int(amt)
         if wallet_amount < amt:
